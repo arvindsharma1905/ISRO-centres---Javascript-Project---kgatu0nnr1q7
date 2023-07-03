@@ -1,1 +1,40 @@
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISRO Centres</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="App.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="mainHeading">
+        <div id="heading--img"><img src="https://cdn.dribbble.com/users/605926/screenshots/1629524/1.png" alt="" /></div>
+        <p>Indian</p>
+        <p>Space</p>
+        <p>Research</p>
+        <p>Organization</p>
+      </div>
+      <div class="heading-1">Search for ISRO centres based on city, state, and name</div>
+      <!-- <div class="btn__div"> -->
+      <div class="inputDiv">
+        <input id="inp" type="search" placeholder="Type here......." />
+        <img src="assets/search.png" alt="" onclick="searchInput()" />
+      </div>
+      <!-- <div class="btn__div"> -->
+      <button class="btn" onclick="setTimeFrame('city')">CITY</button>
+      <button class="btn" onclick="setTimeFrame('state')">STATE</button>
+      <button class="btn" onclick="setTimeFrame('center')">CENTER</button>
+      <!-- </div> -->
+      <!-- </div> -->
+      <table class="tab">
+        <tbody class="mainBody"></tbody>
+        <tbody class="filterData"></tbody>
+        <!-- <tr class="hi"></tr> -->
+      </table>
+      <div class="data"></div>
+    </div>
+  </body>
+</html>

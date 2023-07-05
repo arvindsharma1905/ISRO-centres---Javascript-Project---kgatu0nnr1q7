@@ -11,6 +11,24 @@ function setTimeFrame(time) {
   timeStamp = timeFrames[time];
   // console.log(timeStamp);
 }
+function toggleActive(event){
+  clearActive();
+  event.target.classList.toggle("btn-active")
+}
+function clearActive(){
+  document.querySelectorAll(".btn").forEach(elem =>{
+    elem.classList.remove("btn-active");
+  
+  })
+
+}
+function clearFilter(event){
+  if(event.target.value === null || event.target.value.trim() === ""){
+    clearActive();
+  }
+
+
+}
 async function getData() {
   const resp = await fetch('https://isro.vercel.app/api/centres');
   const data = await resp.json();
@@ -24,16 +42,26 @@ appendData = (data) => {
   data.forEach((element) => {
     const obj = Object.keys(element);
     const tr = document.createElement('tr');
+    const td = document.createElement('td');
     obj.forEach((key) => {
-      const td = document.createElement('td');
+      const divSec=document.createElement('div');
+      divSec.classList.add('info');
       const divtHead = document.createElement('div');
+      divtHead.classList.add('info-title');
+
       const divData = document.createElement('div');
       divtHead.textContent = key === 'name' ? 'Center' : key === 'Place' ? 'City' : 'State';
       divData.textContent = element[key];
-      td.append(divtHead, divData);
+      divSec.append(divtHead, divData);
+
+      td.append(divSec);
+
       tr.append(td);
       mainBodyData.append(tr);
+     
+      
     });
+    
   });
 };
 

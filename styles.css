@@ -9,11 +9,11 @@ html, body{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .container{
-  display: block;
+    display: block;
     /* margin: 0 auto; */
     /* margin: auto; */
     position: absolute;
-    left: 20%;
+    left: 25%;
 }
 .searchDiv{
   display: flex;
@@ -25,11 +25,11 @@ html, body{
   /* justify-content: center; */
   align-items: center;
 }
-.mainHeading > p {
+.mainHeading > span {
   margin: 5px;
-  font-size: 7vh;
+  font-size: 38px;
 }
-.mainHeading > p::first-letter {
+.mainHeading > span::first-letter {
   color: blue;
   font-weight: bold;
 }

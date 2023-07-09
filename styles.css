@@ -13,8 +13,9 @@ html, body{
     /* margin: 0 auto; */
     /* margin: auto; */
     position: absolute;
-    left: 25%;
+    left: 500px;
 }
+
 .searchDiv{
   display: flex;
 }
@@ -46,6 +47,21 @@ img {
   color: white;
   font-size: 6vh;
 }
+.mainBody{
+  opacity: 1;
+  transition: opacity 1s;
+  
+}
+.mainBody.fade{
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+td.fade{
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
 /* tbody {
   border-style: none;
 } */
@@ -58,7 +74,8 @@ td {
   padding: 10px;
   text-align: center;
   border-radius: 20px;
-  max-width: 710px;
+  width: 710px;
+
   /* border-style: none; */
 }
 
@@ -152,7 +169,7 @@ tbody.mainTable {
 }
 table.tab {
   border-spacing: 10px;
-  /* border-collapse: separate; */
+  border-collapse: separate;
   /* padding: 5px; */
   /* background-color: red; */
   border-radius: 20px;
@@ -165,9 +182,14 @@ table.tab {
 }
 .info{
   margin-left: 20px;
-  flex-basis: 25%;
+  margin-right: -15px;
   text-align: left;
   text-transform: none;
+  width: 200px;
+  font-size: 20px;
+}
+.info:last-child{
+  margin-right: -25px;;
 }
 .info-title{
   text-transform: uppercase;
@@ -175,4 +197,44 @@ table.tab {
   font-weight: 600;
   text-align: left;
   line-height: 24px;
+}
+.info-text{
+ 
+}
+.filterData{
+  display: block;
+}
+
+
+/* Mobile Css */
+@media only screen and (max-width: 600px) {
+  .searchDiv {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.container{
+  left:0px;
+  padding: 20px;
+}
+.btn, .inputDiv{
+  width: 100%;
+}
+.tab{
+  margin-top: 20px;
+}
+input{
+  height: 10px;
+  padding: 10px;
+}
+.heading-1{
+  width: 100%;
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  
+  .container{
+    left:30px;
+  }
 }

@@ -25,12 +25,18 @@ function clearActive(){
 function clearFilter(event){
   if(event.target.value === null || event.target.value.trim() === ""){
     clearActive();
-    getData();
-    appendData(data.centres);
+    filterData.textContent = '';
+  
+    mainBodyData.classList.remove("fade");
+    const tdCells = mainBodyData.getElementsByTagName('td');
+    for(var i = 0;i<tdCells.length;i++){
+      tdCells[i].classList.remove("fade");
+    }
+    mainBodyData.style.display = 'block';  
+    
   }
-
-
 }
+
 async function getData() {
   const resp = await fetch('https://isro.vercel.app/api/centres');
   const data = await resp.json();
@@ -52,6 +58,7 @@ appendData = (data) => {
       divtHead.classList.add('info-title');
 
       const divData = document.createElement('div');
+      divData.classList.add('info-text');
       divtHead.textContent = key === 'name' ? 'Center' : key === 'Place' ? 'City' : 'State';
       divData.textContent = element[key];
       divSec.append(divtHead, divData);
@@ -60,10 +67,7 @@ appendData = (data) => {
 
       tr.append(td);
       mainBodyData.append(tr);
-     
-      
     });
-    
   });
 };
 
@@ -72,23 +76,29 @@ async function searchInput() {
     .getElementById('inp')
     .value.toLowerCase()
     .replace(/\b\w/g, (s) => s.toUpperCase());
+  // mainBodyData.style.visiblity = 'hidden';
+  mainBodyData.classList.add("fade");
+  const tdCells = mainBodyData.getElementsByTagName('td');
   mainBodyData.style.display = 'none';
+    for(var i = 0;i<tdCells.length;i++){
+      tdCells[i].classList.add("fade");
+    }
   const resp = await fetch('https://isro.vercel.app/api/centres');
   const data = await resp.json();
   data.centres.forEach((element) => {
     delete element['id'];
   });
   if (timeStamp === 'Place') {
-    const filtData = data.centres.filter((center) => center.Place.toLowerCase() === inputData.toLowerCase());
-    console.log(filtData);
+    const filtData = data.centres.filter((center) => center.Place.toLowerCase().includes(inputData.toLowerCase()));
+   // console.log(filtData);
     filteredData(filtData);
   } else if (timeStamp === 'State') {
-    const filtData = data.centres.filter((center) => center.State.toLowerCase() === inputData.toLowerCase());
-    console.log(filtData);
+    const filtData = data.centres.filter((center) => center.State.toLowerCase().includes(inputData.toLowerCase()));
+  //  console.log(filtData);
     filteredData(filtData);
   } else if (timeStamp === 'name') {
-    const filtData = data.centres.filter((center) => center.name.toLowerCase() === inputData.toLowerCase());
-    console.log(filtData);
+    const filtData = data.centres.filter((center) => center.name.toLowerCase().includes(inputData.toLowerCase()));
+ //   console.log(filtData);
     filteredData(filtData);
   }
 }
@@ -118,6 +128,13 @@ const filteredData = (data) => {
       });
     });
   } else {
-    filterData.textContent = 'NO DATA AVAILABLE FOR THE SELECTED SEARCH, PLEASE TRY AGAIN';
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    const divSec=document.createElement('div');
+    divSec.classList.add('info-error');
+    divSec.textContent = 'NO DATA AVAILABLE FOR THE SELECTED SEARCH, PLEASE TRY AGAIN';
+    td.append(divSec);
+    tr.append(td);
+    filterData.append(tr);
   }
 };

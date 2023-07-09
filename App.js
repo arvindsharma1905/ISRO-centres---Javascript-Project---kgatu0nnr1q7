@@ -5,8 +5,9 @@ const timeFrames = {
   city: 'Place',
   state: 'State',
   center: 'name',
+  filtered: 'none'
 };
-let timeStamp = timeFrames['city'];
+let timeStamp = timeFrames['filtered'];
 function setTimeFrame(time) {
   timeStamp = timeFrames[time];
   // console.log(timeStamp);
@@ -89,6 +90,7 @@ async function searchInput() {
     delete element['id'];
   });
   if (timeStamp === 'Place') {
+
     const filtData = data.centres.filter((center) => center.Place.toLowerCase().includes(inputData.toLowerCase()));
    // console.log(filtData);
     filteredData(filtData);
@@ -100,6 +102,18 @@ async function searchInput() {
     const filtData = data.centres.filter((center) => center.name.toLowerCase().includes(inputData.toLowerCase()));
  //   console.log(filtData);
     filteredData(filtData);
+
+  }
+  else{
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    const divSec=document.createElement('div');
+    divSec.classList.add('info-error');
+    divSec.textContent = 'Please select city/state/center';
+    td.append(divSec);
+    tr.append(td);
+    filterData.append(tr);
+
   }
 }
 
